@@ -1,0 +1,11 @@
+1.​Rôle de Mapper et Reducer :
+​Mapper : Traite et filtre les données d'entrée brutes pour générer des paires d'intermédiaires (clé, valeur).
+​Reducer : Agrège et combine l'ensemble des valeurs associées à une même clé pour produire le résultat final.
+
+2.​Tri et partitionnement des données intermédiaires :
+​Partitionnement : Garantit que toutes les paires ayant la même clé sont transmises au même Reducer.
+​Tri : Organise les données par clé pour permettre au Reducer de regrouper et traiter les valeurs de manière séquentielle et efficace.
+
+3.​Impact de la taille des fichiers sur le temps d'exécution :
+​Fichiers trop petits : Génèrent trop de tâches Map (surcoût/overhead de gestion) et surchargent le NameNode, ce qui ralentit considérablement l'exécution.
+​Fichiers volumineux (bien dimensionnés) : Exploitent pleinement le parallélisme du cluster et réduisent le surcoût lié au lancement des tâches, optimisant le temps de traitement.
