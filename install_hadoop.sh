@@ -649,3 +649,27 @@ echo -e "${NC}"
 
 warn "To apply env in current shell : source /etc/profile.d/hadoop.sh"
 warn "To switch to hadoop user      : sudo -u hadoop bash"
+
+# ─────────────────────────────────────────
+#  AUTO-SOURCE ENVIRONMENT FOR CURRENT SESSION
+# ─────────────────────────────────────────
+
+# Load system-wide Hadoop + Java profile
+source /etc/profile.d/hadoop.sh
+source /etc/profile.d/java.sh
+
+# Also add to root's bashrc so it persists for root sessions
+ROOT_BASHRC="/root/.bashrc"
+sed -i '/### HADOOP ENV START ###/,/### HADOOP ENV END ###/d' "${ROOT_BASHRC}"
+cat >> "${ROOT_BASHRC}" <<EOF
+
+### HADOOP ENV START ###
+export JAVA_HOME="${JAVA_HOME_PATH}"
+export HADOOP_HOME="${HADOOP_HOME}"
+export PATH="\${JAVA_HOME}/bin:\${HADOOP_HOME}/bin:\${HADOOP_HOME}/sbin:\${PATH}"
+export PDSH_RCMD_TYPE=ssh
+### HADOOP ENV END ###
+EOF
+
+source "${ROOT_BASHRC}"
+log "Environment sourced for current and future root sessions. ✓"
