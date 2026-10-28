@@ -1,0 +1,3 @@
+​Blocs HDFS : Ce sont les unités de base de découpage et de stockage des fichiers dans HDFS (généralement 128 Mo ou 256 Mo).
+​Facteur de réplication : Il définit le nombre de copies de chaque bloc conservées sur le cluster pour garantir la tolérance aux pannes et la disponibilité.
+​Fichier plus petit qu'un bloc : Il n'occupe que sa taille réelle sur le disque (aucun gaspillage d'espace), mais est comptabilisé comme un bloc complet dans les métadonnées du NameNode.
