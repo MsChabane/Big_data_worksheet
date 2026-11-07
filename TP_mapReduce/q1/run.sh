@@ -1,16 +1,7 @@
 #!/bin/bash
-# =============================================================
-#  Hadoop Streaming — Chiffre d'Affaires par Catégorie
-#  Fixed : correct streaming JAR + correct -D flag order
-# =============================================================
+
 
 set -e
-
-# ─────────────────────────────────────────
-#  ENVIRONMENT
-# ─────────────────────────────────────────
-
-export HADOOP_HOME=/usr/local/hadoop
 
 # ─────────────────────────────────────────
 #  FIX 1: Find the CORRECT streaming JAR
@@ -33,7 +24,7 @@ fi
 # ─────────────────────────────────────────
 #  PATHS
 # ─────────────────────────────────────────
-INPUT_HDFS="/bigdata/ventes/raw/vents_10k.csv"
+INPUT_HDFS="/bigdata/ventes/raw/ventes_1m.csv"
 OUTPUT_HDFS="/bigdata/ventes/output/ca_par_categorie"
 
 # ─────────────────────────────────────────
@@ -117,13 +108,3 @@ hdfs dfs -cat "$OUTPUT_HDFS/part-*" | \
 
 echo ""
 
-# ─────────────────────────────────────────
-#  STEP 6: SAVE RESULTS LOCALLY
-# ─────────────────────────────────────────
-echo "[5] Saving results locally..."
-hdfs dfs -cat "$OUTPUT_HDFS/part-*" > ./resultats_ca.txt
-echo "    ✓ Saved to: $(pwd)/resultats_ca.txt"
-echo ""
-echo "  📁 HDFS Output:"
-hdfs dfs -ls "$OUTPUT_HDFS"
-echo ""
