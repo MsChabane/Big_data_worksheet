@@ -672,4 +672,6 @@ export PDSH_RCMD_TYPE=ssh
 EOF
 
 source "${ROOT_BASHRC}"
-log "Environment sourced for current and future root sessions. ✓"
+log "Environment sourced for current and future root sessions. ✓" 
+
+
